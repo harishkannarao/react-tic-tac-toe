@@ -23,3 +23,9 @@
 ### Run the build distribution
 
     npm run serve
+
+### Run the unit and component tests
+
+    npm run test
+
+    npm run test:ci

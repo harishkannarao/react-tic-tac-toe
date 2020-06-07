@@ -2,18 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-export class Square extends React.Component {
-    render() {
-        return (
-            <button
-                className="square"
-                onClick={() => this.props.onClick()}
-            >
-                {this.props.value}
-            </button>
-        );
-    }
-}
+import Square from './square.js'
 
 export class Board extends React.Component {
     renderSquare(i) {
