@@ -14,6 +14,8 @@
 
     npm run start
 
+    BROWSER=none npm run start
+
 ### Build application
 
     npm run build
