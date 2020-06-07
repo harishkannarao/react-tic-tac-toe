@@ -55,6 +55,7 @@ class Game extends React.Component {
                     squares: Array(9).fill(null)
                 }
             ],
+            stepNumber: 0,
             xIsNext: true
         }
     }
@@ -79,22 +80,32 @@ class Game extends React.Component {
         return null;
     }
 
+    jumpTo(step) {
+        this.setState({
+            ...this.state,
+            stepNumber: step,
+            xIsNext: (step % 2) === 0
+        });
+    }
+
     handleClick(i) {
         const newState = JSON.parse(JSON.stringify(this.state))
-        const current = newState.history[newState.history.length - 1];
+        const history = newState.history.slice(0, newState.stepNumber + 1);
+        const current = history[history.length - 1];
         const squares = current.squares.slice();
         if (this.calculateWinner(squares) || squares[i]) {
             return;
         }
         squares[i] = newState.xIsNext ? 'X' : 'O';
-        newState.history = [...newState.history, {squares: squares}];
+        newState.history = [...history, { squares: squares }];
+        newState.stepNumber = history.length;
         newState.xIsNext = !newState.xIsNext;
         this.setState(newState);
     }
 
     render() {
         const { history } = this.state;
-        const current = history[history.length - 1];
+        const current = history[this.state.stepNumber];
         const winner = this.calculateWinner(current.squares);
         const nextPlayer = this.state.xIsNext ? 'X' : 'O';
         let status;
@@ -103,17 +114,29 @@ class Game extends React.Component {
         } else {
             status = `Next player: ${nextPlayer}`;
         }
+
+        const moves = history.map((element, index) => {
+            const desc = index ?
+                'Go to move #' + index :
+                'Go to game start';
+            return (
+                <li key={index}>
+                    <button onClick={() => this.jumpTo(index)}>{desc}</button>
+                </li>
+            );
+        });
+
         return (
             <div className="game">
                 <div className="game-board">
-                    <Board 
+                    <Board
                         squares={current.squares}
                         onClick={(i) => this.handleClick(i)}
                     />
                 </div>
                 <div className="game-info">
-                    <div>{ status }</div>
-                    <ol>{/* TODO */}</ol>
+                    <div>{status}</div>
+                    <ol>{moves}</ol>
                 </div>
             </div>
         );
