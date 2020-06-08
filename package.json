@@ -11,7 +11,7 @@
     "start": "react-scripts start",
     "start:no-browser": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "test:ci": "react-scripts test --watchAll=false",
     "eject": "react-scripts eject",
     "serve": "serve -s build"
