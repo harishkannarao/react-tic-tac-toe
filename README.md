@@ -1,5 +1,11 @@
 # Tic Tac Toe - React
 
+## Tools Required
+* NodeJs 12: `node --version`
+* Npm 6: `npm --version`
+* Npx 6: `npx --version`
+* Yarn 1.22: `yarn --version`
+
 ## Project creation
 
     npx create-react-app
@@ -8,24 +14,24 @@
 
 ### Install node modules
 
-    npm install
+    yarn install
 
 ### Start application
 
-    npm run start
+    yarn start
 
-    BROWSER=none npm run start
+    yarn start:no-browser
 
 ### Build application
 
-    npm run build
+    yarn build
 
 ### Run the build distribution
 
-    npm run serve
+    yarn serve
 
 ### Run the unit and component tests
 
-    npm run test
+    yarn test
 
-    npm run test:ci
+    yarn test:ci

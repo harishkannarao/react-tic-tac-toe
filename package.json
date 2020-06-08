@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:no-browser": "BROWSER=none react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:ci": "react-scripts test --watchAll=false",

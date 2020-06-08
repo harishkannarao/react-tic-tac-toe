@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent, waitFor, screen } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 
-import Square from '../square.js'
+import Square from '../../square/square.js'
 
 test('display square with value', async () => {
 
