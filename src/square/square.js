@@ -5,6 +5,7 @@ export class Square extends React.Component {
         return (
             <button
                 className="square"
+                data-testid="square"
                 onClick={() => this.props.onClick()}
             >
                 {this.props.value}

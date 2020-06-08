@@ -8,5 +8,17 @@ test('display square with value', async () => {
 
     render(<Square value="abc" />)
 
-    expect(screen.queryByText("abc")).not.toBeNull();
+    expect(screen.queryByTestId("square")).not.toBeNull();
+
+    expect(screen.getByTestId('square')).toHaveTextContent('abc')
+})
+
+test('verify onClick even', async () => {
+    const mockCallback = jest.fn(() => {});
+
+    render(<Square onClick={mockCallback} />)
+
+    fireEvent.click(screen.getByTestId('square'))
+
+    expect(mockCallback.mock.calls.length).toBe(1);
 })
