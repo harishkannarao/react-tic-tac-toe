@@ -8,9 +8,11 @@ test('display square with value', async () => {
 
     render(<Square value="abc" />)
 
+    // screen.debug(screen.queryByText("abc"))
+
     expect(screen.queryByTestId("square")).not.toBeNull();
 
-    expect(screen.getByTestId('square')).toHaveTextContent('abc')
+    expect(screen.getByTestId("square")).toHaveTextContent("abc")
 })
 
 test('verify onClick even', async () => {
@@ -18,7 +20,7 @@ test('verify onClick even', async () => {
 
     render(<Square onClick={mockCallback} />)
 
-    fireEvent.click(screen.getByTestId('square'))
+    fireEvent.click(screen.getByTestId("square"))
 
     expect(mockCallback.mock.calls.length).toBe(1);
 })
