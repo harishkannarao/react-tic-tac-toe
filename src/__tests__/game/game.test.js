@@ -48,16 +48,58 @@ test('X as winner', async () => {
 test('O as winner', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[3])
+    fireEvent.click(squares[6])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[7])
+    fireEvent.click(squares[5])
+
+    await waitForExpect(() => {
+        expect(screen.getByTestId('status').textContent).toBe('Winner: O');
+    }, 2000, 50);
 })
 
 test('game draw', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[8])
+    fireEvent.click(squares[6])
+    fireEvent.click(squares[2])
+    fireEvent.click(squares[5])
+    fireEvent.click(squares[3])
+    fireEvent.click(squares[1])
+    fireEvent.click(squares[7])
+
+    await waitForExpect(() => {
+        expect(screen.getByTestId('status').textContent).toBe('Draw');
+    }, 2000, 50);
 })
 
 test('toggle of next player between X and O', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+
+    expect(screen.getByTestId('status').textContent).toBe('Next player: X');
+    fireEvent.click(squares[0])
+    await waitForExpect(() => {
+        expect(screen.getByTestId('status').textContent).toBe('Next player: O');
+    });
+    fireEvent.click(squares[4])
+    await waitForExpect(() => {
+        expect(screen.getByTestId('status').textContent).toBe('Next player: X');
+    });
+    fireEvent.click(squares[8])
+    await waitForExpect(() => {
+        expect(screen.getByTestId('status').textContent).toBe('Next player: O');
+    });
 })
 
 test('display of history of moves', async () => {
