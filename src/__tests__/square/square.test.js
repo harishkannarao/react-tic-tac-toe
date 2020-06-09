@@ -1,6 +1,5 @@
 import React from 'react'
-import { render, fireEvent, waitFor, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
+import { render, fireEvent, screen } from '@testing-library/react'
 
 import Square from '../../square/square.js'
 
@@ -12,7 +11,7 @@ test('display square with value', async () => {
 
     expect(screen.queryByTestId("square")).not.toBeNull();
 
-    expect(screen.getByTestId("square")).toHaveTextContent("abc")
+    expect(screen.getByTestId("square").textContent).toBe("abc")
 })
 
 test('verify onClick even', async () => {

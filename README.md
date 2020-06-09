@@ -14,7 +14,7 @@
 
 ### Install node modules
 
-    yarn install
+    npm install
 
 ### Start application
 
