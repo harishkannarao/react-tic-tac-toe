@@ -105,11 +105,77 @@ test('toggle of next player between X and O', async () => {
 test('display of history of moves', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+
+    expect(screen.queryAllByTestId('move').length).toBe(1);
+    expect(screen.queryAllByTestId('move')[0].textContent).toBe('Go to game start');
+    fireEvent.click(squares[0])
+    await waitForExpect(() => {
+        expect(screen.queryAllByTestId('move').length).toBe(2);
+    });
+    expect(screen.queryAllByTestId('move')[1].textContent).toBe('Go to move #1');
+    fireEvent.click(squares[4])
+    await waitForExpect(() => {
+        expect(screen.queryAllByTestId('move').length).toBe(3);
+    });
+    expect(screen.queryAllByTestId('move')[2].textContent).toBe('Go to move #2');
 })
 
 test('jump to historic moves', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[8])
+
+    expect(screen.queryAllByTestId('move').length).toBe(4);
+    
+    expect(squares[0].textContent).toBe('X')
+    expect(squares[1].textContent).toBe('')
+    expect(squares[2].textContent).toBe('')
+    expect(squares[3].textContent).toBe('')
+    expect(squares[4].textContent).toBe('O')
+    expect(squares[5].textContent).toBe('')
+    expect(squares[6].textContent).toBe('')
+    expect(squares[7].textContent).toBe('')
+    expect(squares[8].textContent).toBe('X')
+
+    fireEvent.click(screen.queryAllByTestId('move')[2])
+
+    expect(squares[0].textContent).toBe('X')
+    expect(squares[1].textContent).toBe('')
+    expect(squares[2].textContent).toBe('')
+    expect(squares[3].textContent).toBe('')
+    expect(squares[4].textContent).toBe('O')
+    expect(squares[5].textContent).toBe('')
+    expect(squares[6].textContent).toBe('')
+    expect(squares[7].textContent).toBe('')
+    expect(squares[8].textContent).toBe('')
+
+    fireEvent.click(screen.queryAllByTestId('move')[3])
+
+    expect(squares[0].textContent).toBe('X')
+    expect(squares[1].textContent).toBe('')
+    expect(squares[2].textContent).toBe('')
+    expect(squares[3].textContent).toBe('')
+    expect(squares[4].textContent).toBe('O')
+    expect(squares[5].textContent).toBe('')
+    expect(squares[6].textContent).toBe('')
+    expect(squares[7].textContent).toBe('')
+    expect(squares[8].textContent).toBe('X')
+
+    fireEvent.click(screen.queryAllByTestId('move')[0])
+
+    expect(squares[0].textContent).toBe('')
+    expect(squares[1].textContent).toBe('')
+    expect(squares[2].textContent).toBe('')
+    expect(squares[3].textContent).toBe('')
+    expect(squares[4].textContent).toBe('')
+    expect(squares[5].textContent).toBe('')
+    expect(squares[6].textContent).toBe('')
+    expect(squares[7].textContent).toBe('')
+    expect(squares[8].textContent).toBe('')
 })
 
 test('history reset after new click', async () => {
