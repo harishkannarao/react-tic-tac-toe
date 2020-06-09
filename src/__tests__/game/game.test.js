@@ -34,7 +34,6 @@ test('X as winner', async () => {
     const squares = screen.queryAllByTestId('square')
 
     fireEvent.click(squares[0])
-    fireEvent.click(squares[0])
     fireEvent.click(squares[1])
     fireEvent.click(squares[4])
     fireEvent.click(squares[2])
@@ -181,19 +180,80 @@ test('jump to historic moves', async () => {
 test('history reset after new click', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[8])
+
+    expect(screen.queryAllByTestId('move').length).toBe(4);
+    
+    fireEvent.click(screen.queryAllByTestId('move')[1])
+
+    fireEvent.click(squares[7])
+
+    expect(screen.queryAllByTestId('move').length).toBe(3);
+    
+    expect(squares[0].textContent).toBe('X')
+    expect(squares[1].textContent).toBe('')
+    expect(squares[2].textContent).toBe('')
+    expect(squares[3].textContent).toBe('')
+    expect(squares[4].textContent).toBe('')
+    expect(squares[5].textContent).toBe('')
+    expect(squares[6].textContent).toBe('')
+    expect(squares[7].textContent).toBe('O')
+    expect(squares[8].textContent).toBe('')
 })
 
 test('click not allowed on filled square', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+    fireEvent.click(squares[0])
+    expect(squares[0].textContent).toBe('X')
+    fireEvent.click(squares[0])
+    expect(squares[0].textContent).toBe('X')
 })
 
 test('click not allowed after win', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[1])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[2])
+    fireEvent.click(squares[8])
+
+    expect(screen.getByTestId('status').textContent).toBe('Winner: X');
+
+    expect(squares[5].textContent).toBe('')
+
+    fireEvent.click(squares[5])
+
+    expect(squares[5].textContent).toBe('')
 })
 
 test('click not allowed after draw', async () => {
     render(<Game />)
 
+    const squares = screen.queryAllByTestId('square')
+    
+    fireEvent.click(squares[0])
+    fireEvent.click(squares[4])
+    fireEvent.click(squares[8])
+    fireEvent.click(squares[6])
+    fireEvent.click(squares[2])
+    fireEvent.click(squares[5])
+    fireEvent.click(squares[3])
+    fireEvent.click(squares[1])
+    fireEvent.click(squares[7])
+
+    expect(screen.getByTestId('status').textContent).toBe('Draw');
+
+    expect(squares[0].textContent).toBe('X')
+
+    fireEvent.click(squares[0])
+
+    expect(squares[0].textContent).toBe('X')
 })
