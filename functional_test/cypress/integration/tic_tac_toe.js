@@ -13,6 +13,9 @@ describe('Play tic tac toe', () => {
         const statusId = '[data-testid="status"';
 
         cy.get(statusId)
-            .should('contain', 'Winner: X');
+            .should(($div) => {
+                expect($div).to.have.length(1)
+                expect($div[0]).to.have.text('Winner: X')
+            });
     });
 });
