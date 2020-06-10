@@ -2,15 +2,17 @@ describe('Play tic tac toe', () => {
     it('Displays X as the winner', () => {
         cy.visit('http://localhost:3000');
 
-        // cy.get('[data-testid="messageText"]')
-        //     .type('New message');
+        const squareId = '[data-testid="square"]';
 
-        // cy.get('[data-testid="sendButton"]')
-        //     .click();
+        cy.get(squareId).eq(0).click();
+        cy.get(squareId).eq(1).click();
+        cy.get(squareId).eq(4).click();
+        cy.get(squareId).eq(2).click();
+        cy.get(squareId).eq(8).click();
 
-        // cy.get('[data-testid="messageText"]')
-        //     .should('have.value', '');
+        const statusId = '[data-testid="status"';
 
-        // cy.contains('New message');
+        cy.get(statusId)
+            .should('contain', 'Winner: X');
     });
 });
