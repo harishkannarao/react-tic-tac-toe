@@ -10,9 +10,7 @@ describe('Play tic tac toe', () => {
         cy.get(squareId).eq(2).click();
         cy.get(squareId).eq(8).click();
 
-        const statusId = '[data-testid="status"';
-
-        cy.get(statusId)
+        cy.get('[data-testid="status"')
             .should(($div) => {
                 expect($div).to.have.length(1)
                 expect($div[0]).to.have.text('Winner: X')
