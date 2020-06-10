@@ -10,12 +10,12 @@ npm install
 
 yarn test:ci
 
-# yarn build
+yarn build
 
-# docker build --pull -t com.harishkannarao/learn-tdd-in-react:latest -f Dockerfile build
+docker build --pull -t com.harishkannarao/react-tic-tac-toe:latest -f Dockerfile build
 
-# docker run --rm -d --name learn-tdd-in-react -p '3000:80' com.harishkannarao/learn-tdd-in-react:latest
+docker run --rm -d --name react-tic-tac-toe -p '3000:80' com.harishkannarao/react-tic-tac-toe:latest
 
-# yarn cypress:run-functional
+yarn cypress:run-functional
 
-# docker stop learn-tdd-in-react
+docker stop react-tic-tac-toe
