@@ -17,7 +17,6 @@ It also demonstrates the CI setup and run using Github Actions
 * NodeJs 12: `node --version`
 * Npm 6: `npm --version`
 * Npx 6: `npx --version`
-* Yarn 1.22: `yarn --version`
 * Docker 19: `docker --version`
 
 ## Project creation
@@ -32,36 +31,40 @@ It also demonstrates the CI setup and run using Github Actions
 
 ### Start application
 
-    yarn start
+    npm run start
 
-    yarn start:no-browser
+    npm run start:no-browser
 
 ### Build application
 
-    yarn build
+    npm run build
 
 ### Run the build distribution
 
-    yarn serve
+    npm run serve
 
 ### Run the unit and component tests
 
-    yarn test
+    npm run test
 
-    yarn test:ci
+    npm run test:ci
 
 ### Run integration tests
 
-    yarn cypress:open-functional
+    npm run cypress:open-functional
 
-    yarn cypress:run-functional
+    npm run cypress:run-functional
+
+### Run all tests
+
+    npm run test:ci && npm run cypress:run-functional
 
 
 ## Run as Docker
 
 ### Build the project
 
-    yarn build
+    npm run build
 
 ### Build the docker container
 
