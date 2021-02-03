@@ -39,6 +39,10 @@
     "@testing-library/user-event": "^7.1.2",
     "serve": "^11.3.2",
     "wait-for-expect": "^3.0.2",
-    "cypress": "^4.7.0"
+    "cypress": "^4.7.0",
+    "mocha": "7.2.0",
+    "mochawesome": "6.1.1",
+    "mochawesome-merge": "4.1.0",
+    "mochawesome-report-generator": "5.1.0"
   }
 }

@@ -12,7 +12,7 @@ env
 /coverage
 
 # cypress
-videos
+functional_test/cypress/report
 
 # production
 /build
